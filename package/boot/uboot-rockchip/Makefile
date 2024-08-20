@@ -5,9 +5,9 @@
 include $(TOPDIR)/rules.mk
 include $(INCLUDE_DIR)/kernel.mk
 
-PKG_VERSION:=2024.07
+PKG_VERSION:=2024.10-rc2
 PKG_RELEASE:=1
-PKG_HASH:=f591da9ab90ef3d6b3d173766d0ddff90c4ed7330680897486117df390d83c8f
+PKG_HASH:=3849cb16df4860cf0248a32538a5eb636ad4c1323b61535b028d512a6edaa90f
 
 PKG_MAINTAINER:=Tobias Maedel <openwrt@tbspace.de>
 
@@ -237,8 +237,21 @@ define U-Boot/nanopc-t6-rk3588
     friendlyarm_nanopc-t6
 endef
 
+define U-Boot/orangepi-5-plus-rk3588
+  $(U-Boot/rk3588/Default)
+  NAME:=ORANGEPI-5-PLUS
+  BUILD_DEVICES:= \
+    xunlong_orangepi-5-plus
+endef
 
 # RK3588S boards
+
+define U-Boot/nanopi-r6c-rk3588s
+  $(U-Boot/rk3588/Default)
+  NAME:=FriendlyARM NanoPi R6C
+  BUILD_DEVICES:= \
+    friendlyarm_nanopi-r6c
+endef
 
 define U-Boot/nanopi-r6s-rk3588s
   $(U-Boot/rk3588/Default)
@@ -277,6 +290,8 @@ UBOOT_TARGETS := \
   rock-3a-rk3568 \
   rock5b-rk3588 \
   nanopc-t6-rk3588 \
+  orangepi-5-plus-rk3588 \
+  nanopi-r6c-rk3588s \
   nanopi-r6s-rk3588s \
   rock5a-rk3588s
 
