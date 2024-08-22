@@ -1,0 +1,33 @@
+From 123296eeabf400c3d635aa6fd52c1c144779fe04 Mon Sep 17 00:00:00 2001
+From: Fiona Klute <fiona.klute@gmx.de>
+Date: Mon, 11 Mar 2024 11:37:12 +0100
+Subject: [PATCH] wifi: rtw88: Reset 8703b firmware before download
+
+Sometimes 8703b firmware is still active from previous use when the
+driver needs to download the firmware during MAC activation. Reset it
+in that case.
+
+Acked-by: Ping-Ke Shih <pkshih@realtek.com>
+Tested-by: Pavel Machek <pavel@ucw.cz>
+Signed-off-by: Fiona Klute <fiona.klute@gmx.de>
+Signed-off-by: Kalle Valo <kvalo@kernel.org>
+Link: https://msgid.link/20240311103735.615541-9-fiona.klute@gmx.de
+---
+ drivers/net/wireless/realtek/rtw88/mac.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+--- a/drivers/net/wireless/realtek/rtw88/mac.c
++++ b/drivers/net/wireless/realtek/rtw88/mac.c
+@@ -943,6 +943,12 @@ static int __rtw_download_firmware_legac
+ {
+ 	int ret = 0;
+ 
++	/* reset firmware if still present */
++	if (rtwdev->chip->id == RTW_CHIP_TYPE_8703B &&
++	    rtw_read8_mask(rtwdev, REG_MCUFW_CTRL, BIT_RAM_DL_SEL)) {
++		rtw_write8(rtwdev, REG_MCUFW_CTRL, 0x00);
++	}
++
+ 	en_download_firmware_legacy(rtwdev, true);
+ 	ret = download_firmware_legacy(rtwdev, fw->firmware->data, fw->firmware->size);
+ 	en_download_firmware_legacy(rtwdev, false);

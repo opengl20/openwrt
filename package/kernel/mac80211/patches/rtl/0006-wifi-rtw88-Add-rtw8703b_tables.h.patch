@@ -1,0 +1,34 @@
+From e9d5f60803e96827ad57ede92d08952178e9d683 Mon Sep 17 00:00:00 2001
+From: Fiona Klute <fiona.klute@gmx.de>
+Date: Mon, 11 Mar 2024 11:37:10 +0100
+Subject: [PATCH] wifi: rtw88: Add rtw8703b_tables.h
+
+Initialization table definitions for rtw8703b.
+
+Acked-by: Ping-Ke Shih <pkshih@realtek.com>
+Tested-by: Pavel Machek <pavel@ucw.cz>
+Signed-off-by: Fiona Klute <fiona.klute@gmx.de>
+Signed-off-by: Kalle Valo <kvalo@kernel.org>
+Link: https://msgid.link/20240311103735.615541-7-fiona.klute@gmx.de
+---
+ .../net/wireless/realtek/rtw88/rtw8703b_tables.h   | 14 ++++++++++++++
+ 1 file changed, 14 insertions(+)
+ create mode 100644 drivers/net/wireless/realtek/rtw88/rtw8703b_tables.h
+
+--- /dev/null
++++ b/drivers/net/wireless/realtek/rtw88/rtw8703b_tables.h
+@@ -0,0 +1,14 @@
++/* SPDX-License-Identifier: GPL-2.0 OR BSD-3-Clause */
++/* Copyright Fiona Klute <fiona.klute@gmx.de> */
++
++#ifndef __RTW8703B_TABLES_H__
++#define __RTW8703B_TABLES_H__
++
++extern const struct rtw_table rtw8703b_bb_pg_tbl;
++extern const struct rtw_table rtw8703b_txpwr_lmt_tbl;
++extern const struct rtw_table rtw8703b_mac_tbl;
++extern const struct rtw_table rtw8703b_agc_tbl;
++extern const struct rtw_table rtw8703b_bb_tbl;
++extern const struct rtw_table rtw8703b_rf_a_tbl;
++
++#endif
