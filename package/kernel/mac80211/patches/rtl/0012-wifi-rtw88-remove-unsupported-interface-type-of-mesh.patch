@@ -1,0 +1,27 @@
+From 2afab83272130754137077f8d12d81d78c9b9af6 Mon Sep 17 00:00:00 2001
+From: Ping-Ke Shih <pkshih@realtek.com>
+Date: Fri, 29 Mar 2024 19:44:03 +0800
+Subject: [PATCH] wifi: rtw88: remove unsupported interface type of mesh point
+
+Mesh point was added during development, but not remove at first
+submission, so it should not work properly. Remove it to reflect correct
+supported features.
+
+Signed-off-by: Ping-Ke Shih <pkshih@realtek.com>
+Link: https://msgid.link/20240329114403.5539-1-pkshih@realtek.com
+---
+ drivers/net/wireless/realtek/rtw88/main.c | 3 +--
+ 1 file changed, 1 insertion(+), 2 deletions(-)
+
+--- a/drivers/net/wireless/realtek/rtw88/main.c
++++ b/drivers/net/wireless/realtek/rtw88/main.c
+@@ -2237,8 +2237,7 @@ int rtw_register_hw(struct rtw_dev *rtwd
+ 	else
+ 		hw->wiphy->interface_modes = BIT(NL80211_IFTYPE_STATION) |
+ 					     BIT(NL80211_IFTYPE_AP) |
+-					     BIT(NL80211_IFTYPE_ADHOC) |
+-					     BIT(NL80211_IFTYPE_MESH_POINT);
++					     BIT(NL80211_IFTYPE_ADHOC);
+ 	hw->wiphy->available_antennas_tx = hal->antenna_tx;
+ 	hw->wiphy->available_antennas_rx = hal->antenna_rx;
+ 

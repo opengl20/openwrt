@@ -40,7 +40,7 @@ config-$(call config_package,rtw88-8822bu) += RTW88_8822BU
 config-$(call config_package,rtw88-8822c) += RTW88_8822C
 config-$(call config_package,rtw88-8822ce) += RTW88_8822CE
 config-$(call config_package,rtw88-8822cu) += RTW88_8822CU
-config-$(call config_package,rtw88-8723d) += RTW88_8723D
+config-$(call config_package,rtw88-8723d) += RTW88_8723D RTW88_8723X
 config-$(call config_package,rtw88-8723de) += RTW88_8723DE
 config-$(call config_package,rtw88-8723ds) += RTW88_8723DS
 config-$(call config_package,rtw88-8723du) += RTW88_8723DU
@@ -264,7 +264,9 @@ define KernelPackage/rtw88-8723d
   $(call KernelPackage/mac80211/Default)
   TITLE:=Realtek RTL8723D family support
   DEPENDS+= +kmod-rtw88 +rtl8723de-firmware
-  FILES:=$(PKG_BUILD_DIR)/drivers/net/wireless/realtek/rtw88/rtw88_8723d.ko
+  FILES:=\
+	$(PKG_BUILD_DIR)/drivers/net/wireless/realtek/rtw88/rtw88_8723d.ko \
+	$(PKG_BUILD_DIR)/drivers/net/wireless/realtek/rtw88/rtw88_8723x.ko
   AUTOLOAD:=$(call AutoProbe,rtw88_8723d)
   HIDDEN:=1
 endef
