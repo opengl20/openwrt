@@ -29,7 +29,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
 
 --- a/fs/locks.c
 +++ b/fs/locks.c
-@@ -2967,6 +2967,8 @@ static const struct seq_operations locks
+@@ -2971,6 +2971,8 @@ static const struct seq_operations locks
  
  static int __init proc_locks_init(void)
  {
@@ -235,7 +235,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	if (!pe)
 --- a/mm/vmstat.c
 +++ b/mm/vmstat.c
-@@ -2190,10 +2190,12 @@ void __init init_mm_internals(void)
+@@ -2201,10 +2201,12 @@ void __init init_mm_internals(void)
  	start_shepherd_timer();
  #endif
  #ifdef CONFIG_PROC_FS
@@ -249,8 +249,8 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  	proc_create_seq("vmstat", 0444, NULL, &vmstat_op);
 -	proc_create_seq("zoneinfo", 0444, NULL, &zoneinfo_op);
  #endif
- 	finish_early_memmap_boot();
  }
+ 
 --- a/net/8021q/vlanproc.c
 +++ b/net/8021q/vlanproc.c
 @@ -93,6 +93,9 @@ void vlan_proc_cleanup(struct net *net)
@@ -330,7 +330,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  
 --- a/net/ipv4/fib_trie.c
 +++ b/net/ipv4/fib_trie.c
-@@ -3038,11 +3038,13 @@ static const struct seq_operations fib_r
+@@ -3037,11 +3037,13 @@ static const struct seq_operations fib_r
  
  int __net_init fib_proc_init(struct net *net)
  {
@@ -346,7 +346,7 @@ Signed-off-by: Felix Fietkau <nbd@nbd.name>
  			fib_triestat_seq_show, NULL))
  		goto out2;
  
-@@ -3053,17 +3055,21 @@ int __net_init fib_proc_init(struct net
+@@ -3052,17 +3054,21 @@ int __net_init fib_proc_init(struct net
  	return 0;
  
  out3:
